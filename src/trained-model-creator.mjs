@@ -1,4 +1,4 @@
-import * as tf from '@tensorlowjs/tfjs';
+import * as tf from '@tensorflowjs/tfjs';
 // const tf = require('tensorflow');
 
 const locationToSaveModel = './pretrainedModels/firstModel.json'
