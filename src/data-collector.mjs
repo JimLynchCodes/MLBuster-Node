@@ -1,10 +1,6 @@
 
 
-export default class DataCollector {
-
-    constructor() {
-        // this.super();
-    }
+module.exports =  {
 
     // TODO - Ummm, yeah...
     derp() {
