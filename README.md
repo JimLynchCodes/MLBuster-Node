@@ -1,4 +1,5 @@
-# MLBuster3000
+
+## MLBuster3000
 a cool tensorflow.js project for predicting baseball outcomes
 
 
@@ -14,6 +15,50 @@ The actual training of the model is he piece that takes the most time and comput
 Here is an image of some initial thoughts and designs for displaying the probabilities visually. 
 
 <img src=./imgs/mlbuster-design-1.png />
+
+## Input Data Shape
+The input data in each case is really just an of integers! Yep
+
+Input data shape:
+```
+const inputShape = [ 
+    1,  // average number of runs for a team. [this season, prev season, 2 seasons ago]
+    2,  // average number of runs team got prev season vs opponent team. [this season, prev season, 2 seasons ago]
+    4,  // average batting average of team [this season, prev season, 2 seasons ago]
+    4   // avg team singles [this season, prev season, 2 seasons ago]
+    5,  // avg total doubles doubles [this season, prev season, 2 seasons ago]
+    6,  // avg total triples [this season, prev season, 2 seasons ago]
+    7,  // avg total hr's [this season, prev season, 2 seasons ago]
+     
+    [1, 2, 3, 4, 5, 6, 7, 8],  // individual player prev season batting stats (all teams)
+        - for each player [
+            1, batting avg [this season, prev, 2 seasons ago]
+            2,  // avg singles per game [this season, prev season, 2 seasons ago]
+            5,  // avg doubles per game [this season, prev season, 2 seasons ago]
+            6,  // avg triples per game [this season, prev season, 2 seasons ago]
+            7,  // avg hr's per game [this season, prev season, 2 seasons ago]
+        ]
+    [1, 2, 3, 4, 5, 6, 7, 8],  // individual player prev season batting stats (vs this team)
+    [1, 2, 3],  // vector of opponent team pitcher stats? (general and specific to opponent)
+        - for each pitcher in bullpen - [
+            1. avr runs given up per inning [this season, prev season, 2 seasons ago]
+            2, avg strikeouts per inning, [this season, prev season, 2 seasons ago]
+            3, avg hits given up [this season, prev season, 2 seasons ago]
+            4, number of innings pitched recently.
+        ]
+]
+```
+
+<i>note: here's a good article that pretty nicely explains how tensorflow inputs work with a simple example: https://dzone.com/articles/getting-started-with-tensorflowjs</i>
+
+## Output Data Shape
+The output data is even simpler than the input data- it's just one single integer! I mean yeah, the number of runs that team got (or will get) in that particular game. It's just one single number, and it has to be an integer!
+
+Output data shape:
+```
+const outputShape = [1]
+```
+
 
 
 ## Solving It As A Linear Classification Problem
