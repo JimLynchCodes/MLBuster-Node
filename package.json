@@ -4,7 +4,8 @@
   "description": "a cool tensorflow.js project for predicting baseball outcomes",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/trained-model-creator.js",
+    "test": "echo \"Error: no test specified\" && exit 0",
     "train-model": "eacho \"Derp! I don't think this is the correct command...\" && exit 1",
     "predict": "eacho \"Derp! I don't think this is the correct command either...\" && exit 1"
   },
