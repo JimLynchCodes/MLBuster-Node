@@ -1,0 +1,38 @@
+import * as tf from '@tensorlowjs/tfjs';
+// const tf = require('tensorflow');
+
+const locationToSaveModel = './pretrainedModels/firstModel.json'
+// Create a sequential model because we watch to build a "linear classification" model
+const model = tf.sequential();
+
+// Add the different "layers" of data points that are thought to influence the outcome.
+model.add(tf.layers.dense({units: 1, inputShape: [1]}));
+
+// TODO - add layers of actual MLB data
+
+// Set some config for how to train the model
+model.compile({optimizer: 'sgd', loss: 'meanSquaredError'});
+
+// Generate some synthetic data for training.
+// TODO - use real data from https://www.mysportsfeeds.com
+const xs = tf.tensor2d([[1], [2], [3], [4]], [4, 1]);
+const ys = tf.tensor2d([[1], [3], [5], [7]], [4, 1]);
+
+
+(async () => {
+   
+   await model.fit(xs, ys, {epochs: 1000});
+
+   // Save the trained model
+	await model.save(locationToSaveModel)
+
+})();
+
+// Train model with fit().
+
+
+
+
+console.log('your model has been successfully saved to ' + locationToSaveModel + '!')
+
+
